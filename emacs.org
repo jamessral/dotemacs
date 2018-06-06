@@ -148,7 +148,7 @@ Set titlebar style
 
 *** Set a custom font
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'default-frame-alist '(font . "Monofur 12"))
+  (add-to-list 'default-frame-alist '(font . "RobotoMono Nerd Font 13"))
 #+END_SRC
 
 *** Override a couple of default keybindings
@@ -224,10 +224,10 @@ Set titlebar style
 ** Package Configuration
 *** General
 #+BEGIN_SRC emacs-lisp
-  (use-package leuven-theme
+  (use-package color-theme-sanityinc-tomorrow
     :ensure t
     :config
-    (load-theme 'leuven 'no-confirm))
+    (load-theme 'sanityinc-tomorrow-bright 'no-confirm))
 
   (use-package golden-ratio-scroll-screen
     :ensure t
