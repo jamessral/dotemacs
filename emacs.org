@@ -138,6 +138,9 @@ Set titlebar style
   (global-hl-line-mode 1)
   (eldoc-mode 1)
 
+  ;; Trim trailing whitespace on save
+ (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
   ;; https://gist.github.com/brianloveswords/e23cedf3a80bab675fe5
   (defun my-fancy-newline ()
     "Add two newlines and put the cursor at the right indentation
@@ -602,6 +605,7 @@ Set titlebar style
     (setq js2-include-browser-externs t)
     (setq js2-mode-show-parse-errors nil)
     (setq js2-mode-show-strict-warnings nil)
+    (setq js2-basic-offset 2)
     :config
     (js2-imenu-extras-mode))
 
