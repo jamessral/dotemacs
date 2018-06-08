@@ -17,6 +17,7 @@
     - [[#languages][Languages]]
       - [[#javascript][Javascript]]
       - [[#json][JSON]]
+      - [[#yaml][YAML]]
       - [[#web][Web]]
       - [[#python][Python]]
       - [[#markdown][Markdown]]
@@ -53,6 +54,16 @@
  #+END_SRC 
 
 ** Editor Configuration :noexport_1:
+
+*** Avy Jump binding
+  #+BEGIN_SRC emacs-lisp
+    (global-set-key (kbd "C-'") 'avy-goto-char-2)
+  #+END_SRC
+
+*** Slupring
+  #+BEGIN_SRC emacs-lisp
+    (global-set-key (kbd "C-)") 'sp-forward-slurp-sexp)
+  #+END_SRC
 
 *** Keep changes from 'customize' in a seperate file
  #+BEGIN_SRC emacs-lisp
@@ -126,6 +137,22 @@ Set titlebar style
   (show-paren-mode 1)
   (global-hl-line-mode 1)
   (eldoc-mode 1)
+
+  ;; https://gist.github.com/brianloveswords/e23cedf3a80bab675fe5
+  (defun my-fancy-newline ()
+    "Add two newlines and put the cursor at the right indentation
+  between them if a newline is attempted when the cursor is between
+  two curly braces, otherwise do a regular newline and indent"
+    (interactive)
+    (if (and (equal (char-before) 123) ; {
+             (equal (char-after) 125)) ; }
+        (progn (newline-and-indent)
+               (split-line)
+               (indent-for-tab-command))
+      (newline-and-indent)))
+
+  ;; I set mine to C-j, you do you, don't let me tell you how to live your life.
+  (global-set-key (kbd "M-J") 'my-fancy-newline)
 #+END_SRC
 
 *** Enable toggle code foldings with C-c @ C-c
@@ -635,6 +662,14 @@ Set titlebar style
      ("\\manifest.webapp\\'" . json-mode )
      ("\\.tern-project\\'" . json-mode)))
 #+END_SRC
+
+**** YAML
+#+BEGIN_SRC emacs-lisp
+  (use-package yaml-mode
+    :ensure t
+    :mode (("\\.yml\\'" . yaml-mode)))
+#+END_SRC
+
 
 **** Web
 #+BEGIN_SRC emacs-lisp
